@@ -1,0 +1,53 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\begin{document}
+\noindent
+有关利用幂函数求解无穷级数和展开函数的微专题整理。
+\section{常用展开}
+\begin{align*}\label{2}
+	& \frac{1}{1-x} = \sum_{n=0}^{\infty} x^n\\
+	& \frac{1}{1+x} = \sum_{n=0}^{\infty} (-1)^nx^n\\
+	& e^x=\sum_{n=0}^{\infty} \frac{x^n}{n!} \\
+	& sin{x}=\sum_{n=0}^{\infty} (-1)^n \frac{x^{2n+1}}{(2n+1)!}\\
+	& cos{x}=\sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!}\\
+	& ln(1+x)=\sum_{n=0}^{\infty} (-1)^n \frac{x^{n+1}}{n+1}
+\end{align*}
+技巧：逐项求导或逐项积分，在以上展开式中进行代换和变形
+\section{例题}
+\subsection{绿皮书8.3.4(1)}
+求解以下级数的和函数
+$$\sum_{n=1}^{\infty} \frac{(-1)^n}{2n-1} (\frac{3}{4})^n$$
+\begin{proof}
+首先补上一个$t^{2n-1}$为了求导后可以和$2n-1$消去,先求导再积分就是原函数:\\
+$$\int_{0}^{x}(\sum_{n=1}^{\infty} \frac{(-1)^n}{2n-1} (\frac{3}{4})^n t^{2n-1})'dx$$(这一步中用n+1代n)
+$$=-\frac{3}{4} \int_{0}^{x}(\sum_{n=1}^{\infty} (-1)^n (\frac{3}{4})^n t^{2n})dx$$
+$$=-\frac{3}{4}\int_{0}^{x} \frac{1}{1+(\frac{\sqrt{3}}{2}x)^2}dx$$
+$$=-\frac{\sqrt{3}}{2} arctan{\frac{\sqrt{3}}{2}x}$$
+最后带入$x=1$即可。
+\end{proof}
+\subsection{绿皮书8.3.4(2)}
+$$\int_{n=1}^{\infty} \frac{(-1)^n n(n+1)}{2^n}$$
+\begin{proof}
+这道题目考察逐项求导的方法，目的是凑出$n(n+1)$形式：
+由结论$\frac{1}{1+x} = \sum_{n=0}^{\infty} (-1)^nx^n$
+两边同时乘以$x$，然后求导：\\$\sum_{n=1}^{\infty} (-1)^n(n+1)x^n = \frac{1}{(x+1)^2}$\\
+再求导：\\
+$\sum_{n=1}^{\infty} (-1)^nn(n+1)x^{n-1} = \frac{-2}{(x+1)^3}$\\
+两边同时乘以$x$,再用$\frac{x}{2}$代$x$:就得到：\\
+$\sum_{n=1}^{\infty} \frac{(-1)^nn(n+1)}{2^n}x^n=\frac{-8x}{(x+2)^3}$
+带入$x=1$即可得到答案。\\
+\end{proof}
+\textbf{思路小结:}可以从常见的展开式下手，通过积分，求导等变化得到结果要求的形式。
+\\
+\subsection{绿皮书8.3.6(4)}
+求下列函数的$Maclaurin$展开式
+$$f(x)=\frac{x^2}{\sqrt{1-x^2}}$$
+\begin{proof}
+	可以发现，分子不用担心，最后乘上去就行了，另一块的基本形式是$(1+x)^\alpha$的展开，于是得到如下过程：
+	$(1+x)^{-\frac{1}{2}}=\sum_{n=1}^{\infty} \frac{\frac{1}{2}(\frac{1}{2}-1)\cdots (\frac{1}{2} - n + 1)}{n!}x^n$带入$-x^2$再在两边乘以$x^2$,即可得到结果为：\\
+	$\sum_{n=0}^{\infty} \frac{(2n)!}{(2^nn!)^2}x^{2n+2}$
+\end{proof}
+这种题目解法和上面求和函数的做法本质上是一样的，就不多加赘述，大家自己做题理解。\\
+\today
+\end{document}
